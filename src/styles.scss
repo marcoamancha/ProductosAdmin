@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.button-submit {
+  background-color: #ffcc00;
+  color: #1c1d1d;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d2d900;
+  }
+}

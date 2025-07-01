@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>{{tituloFormulario}}</h2>
+  <form autocomplete="off" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="column">
+        <div class="form-group">
+          <label for="id">ID:</label>
+          <input id="id" name="id" formControlName="id" />
+          @if ( formUtils.isValidField(productForm, 'id')) {
+            <span class="error-message">{{ formUtils.getFieldError(productForm, "id")}}</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción:</label>
+          <input id="description" name="description" formControlName="description" />
+          @if ( formUtils.isValidField(productForm, 'description')) {
+            <span class="error-message">{{ formUtils.getFieldError(productForm, "description")}}</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="date_release">Fecha Liberación:</label>
+          <input id="date_release" type="date" name="date_release" formControlName="date_release" />
+          @if ( formUtils.isValidField(productForm, 'date_release')) {
+            <span class="error-message">La fecha ingresada debe ser igual o mayor a la fecha actual</span>
+          }
+        </div>
+      </div>
+      <div class="column">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input id="name" name="name" formControlName="name" />
+          @if ( formUtils.isValidField(productForm, 'name')) {
+            <span class="error-message">{{ formUtils.getFieldError(productForm, "name")}}</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="logo">Logo (URL):</label>
+          <input id="logo" name="logo" formControlName="logo" />
+          @if ( formUtils.isValidField(productForm, 'logo')) {
+            <span class="error-message">{{ formUtils.getFieldError(productForm, "logo")}}</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="date_revision">Fecha Revisión:</label>
+          <input class="date_revision" id="date_revision" type="date" name="date_revision" formControlName="date_revision" readonly />
+        </div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button type="reset" (click)="onReset()">Reiniciar</button>
+      <button type="submit" class="button-submit" [disabled]="productForm.invalid">Enviar</button>
+    </div>
+  </form>
+</div>
+
+<app-error-message *ngIf="messageResponse" [message]="messageResponse"></app-error-message>

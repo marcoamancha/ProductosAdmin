@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="header">
+    <input type="text" placeholder="Buscar..." [formControl]="searchTerm" class="search-input">
+    <button class="button-submit" (click)="goToAddProduct()">Agregar</button>
+  </div>
+  
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>Descripción</th>
+        <th>Fecha de liberación</th>
+        <th>Fecha de reestructuración</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td><img [src]="product.logo" class="logo-img" alt="logo-img"></td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.date_release }}</td>
+        <td>{{ product.date_revision }}</td>
+        <td>
+          <app-dropdown [options]="dropdownOptions" [id]="product.id"></app-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span class="resultados">
+      {{ filteredProducts.length }} {{ filteredProducts.length === 1 ? 'Resultado' : 'Resultados' }}
+    </span>
+    <select [formControl]="itemsPerPage">
+      <option *ngFor="let option of pageOptions" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+
+  <app-modal *ngIf="showModal" [productTitle]="selectedProductTitle" (cancel)="onModalCancel()"
+    (confirm)="onModalConfirm()"></app-modal>
+
+  <app-error-message *ngIf="messageResponse" [message]="messageResponse"></app-error-message>
+
+</div>

@@ -1,0 +1,12 @@
+<div class="modal-overlay" (click)="onCancel()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <p class="modal-message">
+      ¿Estas seguro de eliminar el producto <strong>{{ productTitle }}</strong
+      >?
+    </p>
+    <div class="modal-actions">
+      <button class="cancel-button" (click)="onCancel()">Cancelar</button>
+      <button class="button-submit" (click)="onConfirm()">Confirmar</button>
+    </div>
+  </div>
+</div>

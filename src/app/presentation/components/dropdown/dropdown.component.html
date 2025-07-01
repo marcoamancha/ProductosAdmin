@@ -1,0 +1,14 @@
+<div class="dropdown" tabindex="0">
+    <button class="options-button" (click)="toggleDropdown()" (keydown.enter)="toggleDropdown()"
+    (keydown.space)="toggleDropdown()"
+    [attr.aria-expanded]="isOpen ? 'true' : 'false'">⋮</button>
+    <ul class="dropdown-menu" *ngIf="isOpen">
+        <li *ngFor="let option of options" 
+            (click)="selectOption(option.action)"
+            (keydown.enter)="selectOption(option.action)"
+            (keydown.space)="selectOption(option.action)"
+            tabindex="0">
+          {{ option.label }}
+        </li>
+      </ul>
+</div>
